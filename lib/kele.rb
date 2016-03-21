@@ -13,6 +13,8 @@ class Kele
   def get_auth_token(options = {})
     options.merge!({basic_auth: @auth})
     self.class.post('/sessions', options)
-    puts auth_token
   end
 end
+
+kele = Kele.new(config['email'], config['password'])
+puts kele.auth_token
