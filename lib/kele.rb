@@ -1,14 +1,18 @@
+dir = File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib'))
+require File.join(dir, 'httparty')
+
 class Kele
   include HTTParty
   base_uri 'https://www.bloc.io/api/v1'
 
   def initialize(email, password)
-    @user = {email: email, password: password}
-    @uri = 'https://www.bloc.io/api/v1'
+    @auth = {email: email, password: password}
     @auth_token = auth_token
   end
 
-  def use_auth_token
-    self.class.post {'/sessions/retreive-auth-token', @user}
+  def get_auth_token(options = {})
+    options.merge!({basic_auth: @auth})
+    self.class.post('/sessions', options)
+    puts auth_token
   end
 end
