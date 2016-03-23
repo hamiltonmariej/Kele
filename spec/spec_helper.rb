@@ -7,16 +7,8 @@ require 'webmock/rspec'
 require 'json'
 
 WebMock.disable_net_connect!(allow_localhost: true)
+# WebMock.allow_net_connect!(:net_http_connect_on_start => true)
 
-  # RSpec.configure do |config|
-  #   config.before :each do
-  #     stub_request(:post, "email:password@",api_url("sessions")).
-  #       with(headers: {}).
-  #       to_return(status: 200, body: "", headers: {})
-  #     end
-  #   end
-  #
-  # private
-  # def api_url(endpoint)
-  #   "https://private-4967b7-blocapi.apiary-mock.com/api/v1/#{endpoint}"
-  # end
+
+  RSpec.configure do |config|
+  end
