@@ -16,6 +16,11 @@ class Kele
     response = self.class.get(api_url("users/me"), headers: { "authorization" => @auth_token })
     body = JSON.parse(response.body)
   end
+  #when I run this below I get message: resource not found; it is this way on api console as well
+  def get_mentor_availability(mentor_id)
+    response = self.class.get(api_url("mentors/#{mentor_id}/student_availability"), headers: { "authorization" => @auth_token })
+    body = JSON.parse(response.body)
+  end
 
   private
   def api_url(endpoint)
