@@ -6,7 +6,7 @@ require 'kele/roadmap'
 class Kele
   include HTTParty
   include Roadmap
-  
+
   base_uri "https://www.bloc.io/api/v1/"
 
   def initialize(email, password)
@@ -23,6 +23,19 @@ class Kele
   def get_mentor_availability(mentor_id)
     response = self.class.get(api_url("mentors/#{mentor_id}/student_availability"), headers: { "authorization" => @auth_token })
     body = JSON.parse(response.body)
+  end
+
+  def get_messages(arg = nil)
+    response = self.class.get(api_url("message_threads"), headers: { "authorization" => @auth_token })
+    body = JSON.parse(response.body)
+    pages = (1..(response["count"]/10 + 1)).map do |n|
+      self.class.get(api_url("message_threads"), body: { page: n }, headers: { "authorization" => @auth_token })
+    end
+  end
+
+  def create_message(user_id, recipient_id, token, subject, stripped)
+    options = {body: {user_id: user_id, recipient_id: recipient_id, token: nil, subject: subject, stripped: stripped}, headers: { "authorization" => @auth_token }}
+    self.class.post(api_url("messages"), options)
   end
 
   private
