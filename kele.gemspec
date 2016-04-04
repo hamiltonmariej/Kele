@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
      'http://rubygems.org/gems/kele'
    s.license       = 'MIT'
    s.add_runtime_dependency 'httparty', '~> 0.13'
+   s.add_runtime_dependency 'json', '~>1.8'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
@@ -27,4 +28,5 @@ Gem::Specification.new do |s|
    s.add_development_dependency 'bundler', "~>1.11"
    s.add_development_dependency 'rake', '~>10.0'
    s.add_development_dependency 'rspec', '~>3.0'
+   s.add_development_dependency 'webmock', '~>1.24'
  end
