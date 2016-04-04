@@ -34,6 +34,7 @@ kele_client.get_checkpoint(checkpoint_id)
 ```
 kele_client.get_messages
 ```
+```
 kele_client.create_message(user_id, recipient_id, token, subject, stripped)
 ```
 
